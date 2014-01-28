@@ -15,6 +15,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
   # config.vm.box_url = "http://domain.com/path/to/above.box"
+  #config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5_chef-provisionerless.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -92,19 +93,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   # You may also specify custom JSON attributes:
   #   chef.json = { :mysql_password => "foo" }
   # end
-  #config.vm.provision :shell, :inline => <<-EOD
-  #  mkdir -p /home/vagrant/rpm/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
-  #  chown -R vagrant:vagrant /home/vagrant/rpm
-  #  echo '%_topdir /home/vagrant/rpm' > /home/vagrant/.rpmmacros
-  #  chown vagrant:vagrant /home/vagrant/.rpmmacros
-  #  wget http://www.memcached.org/files/memcached-1.4.17.tar.gz -P /home/vagrant/
-  #  chown vagrant:vagrant /home/vagrant/memcached-1.4.17.tar.gz
-  #  tar xzf /home/vagrant//memcached-1.4.17.tar.gz
-  #  cp /home/vagrant/memcached-1.4.17.tar.gz /home/vagrant/rpm/SOURCES/
-  #  cp /home/vagrant/memcached-1.4.17/memcached.spec /home/vagrant/rpm/SPECS/
-  #  yum install -y rpm-build libevent-devel perl-Test-Simple
-  #  su - vagrant -c 'rpmbuild -ba /home/vagrant/rpm/SPECS/memcached.spec'
-  #EOD
   config.vm.provision :shell do |shell|
     shell.path = "scripts/create_memcached_rpm.sh"
   end
