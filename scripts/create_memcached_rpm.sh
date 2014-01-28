@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # root
-yum install -y rpm-build libevent-devel perl-Test-Simple
+yum install -y rpm-build libevent-devel perl-Test-Simple wget
 
 # vagrant
 
